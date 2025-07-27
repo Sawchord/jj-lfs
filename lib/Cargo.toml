@@ -12,14 +12,7 @@ repository = { workspace = true }
 documentation = { workspace = true }
 readme = { workspace = true }
 
-include = [
-    "/LICENSE",
-    "/src/",
-    "/tests/",
-    "!*.pending-snap",
-    "!*.snap*",
-]
-
+include = ["/LICENSE", "/src/", "/tests/", "!*.pending-snap", "!*.snap*"]
 
 [[test]]
 name = "runner"
@@ -37,6 +30,7 @@ etcetera = { workspace = true }
 futures = { workspace = true }
 gix = { workspace = true, optional = true }
 gix-ignore = { workspace = true }
+gix-attributes = { workspace = true }
 globset = { workspace = true }
 indexmap = { workspace = true }
 interim = { workspace = true }
@@ -60,6 +54,7 @@ strsim = { workspace = true }
 tempfile = { workspace = true }
 thiserror = { workspace = true }
 tokio = { workspace = true, optional = true }
+tokio-util = { workspace = true }
 toml_edit = { workspace = true }
 tracing = { workspace = true }
 watchman_client = { workspace = true, optional = true }
@@ -81,7 +76,7 @@ testutils = { workspace = true }
 tokio = { workspace = true, features = ["full"] }
 
 [target.'cfg(unix)'.dev-dependencies]
-nix = { workspace = true, features = [ "fs" ] }
+nix = { workspace = true, features = ["fs"] }
 
 [features]
 default = ["git"]
