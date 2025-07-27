@@ -69,6 +69,7 @@ gix = { version = "0.87.1", default-features = false, features = [
     "sha256",
 ] }
 gix-ignore = { version = "0.22.1" }
+gix-attributes = "0.28.1"
 globset = "0.4.18"
 hashbrown = { version = "0.17.1", default-features = false, features = ["inline-more"] }
 indexmap = { version = "2.14.0", features = ["serde"] }
@@ -128,6 +129,7 @@ textwrap = "0.16.2"
 thiserror = "2.0.17"
 timeago = { version = "0.6.0", default-features = false }
 tokio = { version = "1.52.3", features = ["fs", "io-util", "process", "rt-multi-thread", "sync", "time"] }
+tokio-util = { version = "0.7.19", features=["compat"] }
 toml = "1.1.0"
 toml_edit = { version = "0.25.12", features = ["serde"] }
 tracing = "0.1.44"
