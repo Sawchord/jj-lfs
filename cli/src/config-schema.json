@@ -586,6 +586,14 @@
                         "type": "string",
                         "description": "A string pattern describing the tags to fetch by default"
                     }
+                },
+                "ignore-filters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Whether to ignore filters set in git attributes files",
+                    "default": ["lfs"]
                 }
             }
         },
