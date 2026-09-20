@@ -8,7 +8,7 @@ members = [
     "core/proc-macros",
     "lib",
     "lib/gen-protos",
-    "lib/testutils",
+    "lib/testutils", "starlight-migrator",
 ]
 
 [workspace.package]
