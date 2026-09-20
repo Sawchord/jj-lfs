@@ -2,8 +2,6 @@
 title: Installation and setup
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
-
 ## Installation
 
 ### Download pre-built binaries for a release
@@ -115,6 +113,16 @@ emerge -av dev-vcs/jj
 zypper install jujutsu
 ```
 
+#### Fedora Linux
+
+`jujutsu` has an unofficial [COPR
+repo](https://copr.fedorainfracloud.org/coprs/aldantanneo/jj-vcs) for Fedora:
+
+```shell
+sudo dnf copr enable aldantanneo/jj-vcs
+sudo dnf install jj-cli
+```
+
 ### Mac
 
 #### From Source
@@ -189,6 +197,29 @@ via scoop:
 scoop install main/jj
 ```
 
+### FreeBSD
+
+`devel/jujutsu` is [available](https://www.freshports.org/devel/jujutsu) in the ports.
+
+Install pre-built pkg:
+
+```shell
+# To install the latest release via pkg
+pkg install jujutsu
+```
+
+Install from building the port:
+
+```shell
+# To install the latest release via ports
+cd /usr/ports/devel/jujutsu/ && make install clean
+```
+
+## Runtime Requirements
+
+You will need git 2.42.0 or above. On older systems (e.g. Debian 11, Ubuntu
+22.04) you will need to [upgrade Git](https://git-scm.com/install/).
+
 ## Initial configuration
 
 You may want to configure your name and email so commits are made in your name.
@@ -221,7 +252,7 @@ Dynamic completions are not the default/only option since the underlying engine
 default once the engine is stabilized. Please let us know if you encounter any
 issues with dynamic completions.
 
-:::note[Which completion script should I use?]
+:::info[Which completion script should I use?]
 Generally, dynamic completions provide a much better completion experience.
 Although the underlying engine is deemed unstable, there have not been many
 issues in practice. Dynamic completions are the preferred option for many
@@ -231,88 +262,80 @@ We recommend using the dynamic completion script, and falling back to the
 standard completion script if there are any issues.
 :::
 
-{/* The content tabs formatting below is optimized for the website and not for GitHub. */}
+<!-- The content tabs formatting below is optimized for the website and not for GitHub. -->
 
 ### Bash
 
-<Tabs>
-  <TabItem label="Standard">
+=== "Standard"
+
     ```shell
     source <(jj util completion bash)
     ```
-  </TabItem>
-  <TabItem label="Dynamic">
+
+=== "Dynamic"
+
     ```shell
     source <(COMPLETE=bash jj)
     ```
-  </TabItem>
-</Tabs>
 
 ### Zsh
 
-<Tabs>
-  <TabItem label="Standard">
+=== "Standard"
+
     ```shell
     autoload -U compinit
     compinit
     source <(jj util completion zsh)
     ```
-  </TabItem>
-  <TabItem label="Dynamic">
+
+=== "Dynamic"
+
     ```shell
     source <(COMPLETE=zsh jj)
     ```
-  </TabItem>
-</Tabs>
 
 ### Fish
 
-:::note
-No configuration is required with fish >= 4.0.2 which loads dynamic completions by default.
-:::
+=== "Standard"
 
-<Tabs>
-  <TabItem label="Standard">
     ```shell
     jj util completion fish | source
     ```
-  </TabItem>
-  <TabItem label="Dynamic">
+
+=== "Dynamic"
+
+    :::note
+    No configuration is required with fish >= 4.0.2 which loads dynamic completions by default.
+    :::
+
     ```shell
     COMPLETE=fish jj | source
     ```
-  </TabItem>
-</Tabs>
 
 ### Nushell
 
-```nu
-jj util completion nushell | save -f completions-jj.nu
-use completions-jj.nu *  # Or `source completions-jj.nu`
-```
+=== "Standard"
 
-### Xonsh
-
-```shell
-source-bash $(jj util completion)
-```
+    ```nu
+    jj util completion nushell | save -f completions-jj.nu
+    use completions-jj.nu *  # Or `source completions-jj.nu`
+    ```
 
 ### Powershell
 
-<Tabs>
-  <TabItem label="Standard">
+=== "Standard"
+
     ```powershell
     jj util completion power-shell | Out-String | Invoke-Expression
     ```
-  </TabItem>
-  <TabItem label="Dynamic">
+
+=== "Dynamic"
+
     ```powershell
     $env:COMPLETE = "powershell"
     jj | Out-String | Invoke-Expression
     Remove-Item Env:\COMPLETE
     ```
-  </TabItem>
-</Tabs>
 
 Insert the above into your `$PROFILE` file
 (usually `$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`).
